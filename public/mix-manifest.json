@@ -1,0 +1,7 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/js/svelte/Map.js": "/js/svelte/Map.js",
+    "/js/svelte/Navigation.js": "/js/svelte/Navigation.js",
+    "/js/svelte/template.js": "/js/svelte/template.js",
+    "/css/app.css": "/css/app.css"
+}
