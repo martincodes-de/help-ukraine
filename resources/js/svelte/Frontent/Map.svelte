@@ -2,6 +2,7 @@
 <svelte:options tag="map-view" />
 
 <script>
+    import * as axios from "axios";
     import * as L from "leaflet";
     import {onMount} from "svelte";
 
@@ -73,6 +74,15 @@
     }
 
     function addNewEntry() {
+        axios.post("https://help-ukraine.ddev.site/api/offer/create", newEntry)
+            .then(response => {
+                if (response.data.status === "ok") {
+                    alert("Erfolgreich eingetragen! Danke für deine Hilfe!");
+                } else {
+                    alert("Hier ist etwas schiefgelaufen!");
+                }
+            })
+
         console.log(newEntry);
     }
 </script>
