@@ -13,9 +13,11 @@
     let map;
     let clickedPopup = new L.Popup();
 
+    let offerCategories = [];
+
     let newEntry = {
         name: "",
-        category_id: 0,
+        offer_category_id: 0,
         description: "",
         contact: "",
         lat: 0.0,
@@ -33,6 +35,8 @@
     };
 
     onMount(() => {
+        fetchOfferCategories();
+
         map = L.map("map").setView([48.545705491847464, 10.634765625], 5);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             'attribution':  'Kartendaten &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> Mitwirkende',
@@ -73,6 +77,13 @@
         showAddEntryModal = true;
     }
 
+    function fetchOfferCategories() {
+        axios.get("https://help-ukraine.ddev.site/api/offer-category/all")
+            .then(response => {
+                offerCategories = response.data.categories;
+            });
+    }
+
     function addNewEntry() {
         axios.post("https://help-ukraine.ddev.site/api/offer/create", newEntry)
             .then(response => {
@@ -81,9 +92,7 @@
                 } else {
                     alert("Hier ist etwas schiefgelaufen!");
                 }
-            })
-
-        console.log(newEntry);
+            });
     }
 </script>
 
@@ -118,11 +127,10 @@
                         </div>
                         <div class="mb-3">
                             <label for="offer-category" class="form-label">Dein Angebot</label>
-                            <select bind:value={newEntry.category_id} id="offer-category" class="form-select" required>
-                                <option>Unterkunft</option>
-                                <option>Kleidungsspende</option>
-                                <option>Essen & Trinken</option>
-                                <option>Sonstige Hilfe</option>
+                            <select bind:value={newEntry.offer_category_id} id="offer-category" class="form-select" required>
+                                {#each offerCategories as category (category.id)}
+                                    <option value={category.id}>{category.name}</option>
+                                {/each}
                             </select>
                         </div>
 

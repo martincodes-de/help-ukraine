@@ -13,18 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('offers', function (Blueprint $table) {
+        Schema::create('offer_categories', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->longText("description");
-            $table->mediumText("contact");
-            $table->double("lat");
-            $table->double("lng");
-
-            $table->unsignedBigInteger("offer_category_id");
-            $table->foreign("offer_category_id")->references("id")->on("offer_categories");
-
-            $table->dateTime("reviewed")->nullable();
+            $table->text("description");
+            $table->string("marker-icon");
             $table->timestamps();
         });
     }
@@ -36,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('offers');
+        Schema::dropIfExists('offer_categories');
     }
 };

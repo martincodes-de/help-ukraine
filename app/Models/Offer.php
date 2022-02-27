@@ -11,6 +11,7 @@ class Offer extends Model
 
     protected $fillable = [
         "name",
+        "offer_category_id",
         "description",
         "contact",
         "lat",
