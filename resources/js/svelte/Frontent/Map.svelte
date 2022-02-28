@@ -5,7 +5,7 @@
     import axios from "axios";
     import * as L from "leaflet";
     import {onMount} from "svelte";
-    import {routeTo} from "../Helper/Config";
+    import {groupedMarkersByCategory, routeTo} from "../Helper/Config";
 
     let mapEditMode = false;
     let showAddEntryModal = false;
@@ -97,24 +97,39 @@
     }
 
     function setupMap(points) {
-        let lineArray = [];
-        let line = L.layerGroup(lineArray);
+        let categorys = groupedMarkersByCategory;
 
-        let overlays = {
-            "Markers": line
-        };
+        let lineArray = [];
 
         marker.forEach(point => {
-            let m = L.marker([point.lat, point.lng], {
+            let mkr = L.marker([point.lat, point.lng], {
                 title: point.category.name
             }).on("click", () => updateDetailModal(point));
 
-            console.log("ADM", m);
-            lineArray.push(m);
+            console.log("MOVE", mkr, "TO", categorys[point.category.id], categorys[point.category.id].name);
+            categorys[point.category.id].marker.push(mkr);
         });
 
+        let defaultMarkerGroups = [];
+        let controlOverlay = {};
+
+        for (const [key, value] of Object.entries(categorys)) {
+            let markerGroup = L.layerGroup(value.marker);
+            defaultMarkerGroups.push(markerGroup);
+            controlOverlay[value.name] = markerGroup;
+        }
+
+        console.log(defaultMarkerGroups, controlOverlay);
+
+
+        /*let line = L.layerGroup(lineArray);
+
+        let overlays = {
+            "Markers": line
+        };*/
+
         map = L.map("map", {
-            layers: [line]
+            layers: defaultMarkerGroups
         }).setView([48.545705491847464, 10.634765625], 5);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -124,7 +139,7 @@
 
         map.on('click', onMapClick);
 
-        L.control.layers(null, overlays, {collapsed:false}).addTo(map);
+        L.control.layers(null, controlOverlay, {collapsed:false}).addTo(map);
     }
 
     function addNewEntry() {

@@ -4,6 +4,13 @@ export let config = {
     devUrl: "https://help-ukraine.ddev.site/"
 };
 
+export let groupedMarkersByCategory = {
+    1: {name: "Unterkünfte", marker: []},
+    2: {name: "Kleidungsspende", marker: []},
+    3: {name: "Essen & Trinken", marker: []},
+    4: {name: "Sonstiges", marker: []},
+};
+
 export function routeTo(pathWithoutBeginningSlash) {
     const env = config.env;
     let baseUrl = config.prodUrl;
