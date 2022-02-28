@@ -2224,7 +2224,7 @@ function get_each_context(ctx, list, i) {
   var child_ctx = ctx.slice();
   child_ctx[23] = list[i];
   return child_ctx;
-} // (177:0) {#if (showAddEntryModal)}
+} // (168:0) {#if (showAddEntryModal)}
 
 
 function create_if_block_1(ctx) {
@@ -2522,7 +2522,7 @@ function create_if_block_1(ctx) {
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.run_all)(dispose);
     }
   };
-} // (189:20) {#if (addEntryAlert.display)}
+} // (180:20) {#if (addEntryAlert.display)}
 
 
 function create_if_block_2(ctx) {
@@ -2563,7 +2563,7 @@ function create_if_block_2(ctx) {
       if (detaching) (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.detach)(div);
     }
   };
-} // (201:32) {#each offerCategories as category (category.id)}
+} // (192:32) {#each offerCategories as category (category.id)}
 
 
 function create_each_block(key_1, ctx) {
@@ -2610,7 +2610,7 @@ function create_each_block(key_1, ctx) {
       if (detaching) (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.detach)(option);
     }
   };
-} // (226:0) {#if (showDetailEntryModal)}
+} // (217:0) {#if (showDetailEntryModal)}
 
 
 function create_if_block(ctx) {
@@ -2957,6 +2957,44 @@ function instance($$self, $$props, $$invalidate) {
     fetchOfferCategories();
   });
 
+  function setupMap(points) {
+    var categorys = _Helper_Config__WEBPACK_IMPORTED_MODULE_4__.groupedMarkersByCategory;
+    marker.forEach(function (point) {
+      var mkr = leaflet__WEBPACK_IMPORTED_MODULE_2__.marker([point.lat, point.lng], {
+        title: point.category.name
+      }).on("click", function () {
+        return updateDetailModal(point);
+      });
+      console.log("MOVE", mkr, "TO", categorys[point.category.id], categorys[point.category.id].name);
+      categorys[point.category.id].marker.push(mkr);
+    });
+    var defaultMarkerGroups = [];
+    var controlOverlay = {};
+
+    for (var _i4 = 0, _Object$entries = Object.entries(categorys); _i4 < _Object$entries.length; _i4++) {
+      var _Object$entries$_i = _slicedToArray(_Object$entries[_i4], 2),
+          key = _Object$entries$_i[0],
+          value = _Object$entries$_i[1];
+
+      var markerGroup = leaflet__WEBPACK_IMPORTED_MODULE_2__.layerGroup(value.marker);
+      defaultMarkerGroups.push(markerGroup);
+      controlOverlay[value.name] = markerGroup;
+    }
+
+    console.log(defaultMarkerGroups, controlOverlay);
+    map = leaflet__WEBPACK_IMPORTED_MODULE_2__.map("map", {
+      layers: defaultMarkerGroups
+    }).setView([48.545705491847464, 10.634765625], 5);
+    leaflet__WEBPACK_IMPORTED_MODULE_2__.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      'attribution': 'Kartendaten &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> Mitwirkende',
+      'useCache': true
+    }).addTo(map);
+    map.on('click', onMapClick);
+    leaflet__WEBPACK_IMPORTED_MODULE_2__.control.layers(null, controlOverlay, {
+      collapsed: false
+    }).addTo(map);
+  }
+
   function onMapClick(e) {
     var content = "\n            Du hast hier geklickt. M\xF6chtest du einen Eintrag erstellen?\n            <button id=\"create-new-entry\" class=\"badge bg-success\">Erstellen</button>\n        ";
 
@@ -2982,7 +3020,7 @@ function instance($$self, $$props, $$invalidate) {
     axios__WEBPACK_IMPORTED_MODULE_1___default().get((0,_Helper_Config__WEBPACK_IMPORTED_MODULE_4__.routeTo)("api/offer/all")).then(function (response) {
       if (response.data.status === "ok") {
         marker = response.data.offers;
-        console.log("UPDATE MARKERS", marker);
+        console.log("GETTED MARKERS", marker);
         setupMap(marker);
       }
     });
@@ -2995,50 +3033,6 @@ function instance($$self, $$props, $$invalidate) {
     $$invalidate(6, shownEntry.contact = offer.contact, shownEntry);
     $$invalidate(6, shownEntry.category = offer.category.name, shownEntry);
     $$invalidate(2, showDetailEntryModal = true);
-  }
-
-  function setupMap(points) {
-    var categorys = _Helper_Config__WEBPACK_IMPORTED_MODULE_4__.groupedMarkersByCategory;
-    var lineArray = [];
-    marker.forEach(function (point) {
-      var mkr = leaflet__WEBPACK_IMPORTED_MODULE_2__.marker([point.lat, point.lng], {
-        title: point.category.name
-      }).on("click", function () {
-        return updateDetailModal(point);
-      });
-      console.log("MOVE", mkr, "TO", categorys[point.category.id], categorys[point.category.id].name);
-      categorys[point.category.id].marker.push(mkr);
-    });
-    var defaultMarkerGroups = [];
-    var controlOverlay = {};
-
-    for (var _i4 = 0, _Object$entries = Object.entries(categorys); _i4 < _Object$entries.length; _i4++) {
-      var _Object$entries$_i = _slicedToArray(_Object$entries[_i4], 2),
-          key = _Object$entries$_i[0],
-          value = _Object$entries$_i[1];
-
-      var markerGroup = leaflet__WEBPACK_IMPORTED_MODULE_2__.layerGroup(value.marker);
-      defaultMarkerGroups.push(markerGroup);
-      controlOverlay[value.name] = markerGroup;
-    }
-
-    console.log(defaultMarkerGroups, controlOverlay);
-    /*let line = L.layerGroup(lineArray);
-    let overlays = {
-      "Markers": line
-    };*/
-
-    map = leaflet__WEBPACK_IMPORTED_MODULE_2__.map("map", {
-      layers: defaultMarkerGroups
-    }).setView([48.545705491847464, 10.634765625], 5);
-    leaflet__WEBPACK_IMPORTED_MODULE_2__.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      'attribution': 'Kartendaten &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> Mitwirkende',
-      'useCache': true
-    }).addTo(map);
-    map.on('click', onMapClick);
-    leaflet__WEBPACK_IMPORTED_MODULE_2__.control.layers(null, controlOverlay, {
-      collapsed: false
-    }).addTo(map);
   }
 
   function addNewEntry() {

@@ -47,6 +47,43 @@
         fetchOfferCategories();
     });
 
+    function setupMap(points) {
+        let categorys = groupedMarkersByCategory;
+
+        marker.forEach(point => {
+            let mkr = L.marker([point.lat, point.lng], {
+                title: point.category.name
+            }).on("click", () => updateDetailModal(point));
+
+            console.log("MOVE", mkr, "TO", categorys[point.category.id], categorys[point.category.id].name);
+            categorys[point.category.id].marker.push(mkr);
+        });
+
+        let defaultMarkerGroups = [];
+        let controlOverlay = {};
+
+        for (const [key, value] of Object.entries(categorys)) {
+            let markerGroup = L.layerGroup(value.marker);
+            defaultMarkerGroups.push(markerGroup);
+            controlOverlay[value.name] = markerGroup;
+        }
+
+        console.log(defaultMarkerGroups, controlOverlay);
+
+        map = L.map("map", {
+            layers: defaultMarkerGroups
+        }).setView([48.545705491847464, 10.634765625], 5);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            'attribution':  'Kartendaten &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> Mitwirkende',
+            'useCache': true
+        }).addTo(map);
+
+        map.on('click', onMapClick);
+
+        L.control.layers(null, controlOverlay, {collapsed:false}).addTo(map);
+    }
+
     function onMapClick(e) {
         let content = `
             Du hast hier geklickt. Möchtest du einen Eintrag erstellen?
@@ -80,7 +117,7 @@
             .then(response => {
                 if (response.data.status === "ok") {
                     marker = response.data.offers;
-                    console.log("UPDATE MARKERS", marker);
+                    console.log("GETTED MARKERS", marker);
                     setupMap(marker);
                 }
             });
@@ -94,52 +131,6 @@
         shownEntry.category = offer.category.name;
 
         showDetailEntryModal = true;
-    }
-
-    function setupMap(points) {
-        let categorys = groupedMarkersByCategory;
-
-        let lineArray = [];
-
-        marker.forEach(point => {
-            let mkr = L.marker([point.lat, point.lng], {
-                title: point.category.name
-            }).on("click", () => updateDetailModal(point));
-
-            console.log("MOVE", mkr, "TO", categorys[point.category.id], categorys[point.category.id].name);
-            categorys[point.category.id].marker.push(mkr);
-        });
-
-        let defaultMarkerGroups = [];
-        let controlOverlay = {};
-
-        for (const [key, value] of Object.entries(categorys)) {
-            let markerGroup = L.layerGroup(value.marker);
-            defaultMarkerGroups.push(markerGroup);
-            controlOverlay[value.name] = markerGroup;
-        }
-
-        console.log(defaultMarkerGroups, controlOverlay);
-
-
-        /*let line = L.layerGroup(lineArray);
-
-        let overlays = {
-            "Markers": line
-        };*/
-
-        map = L.map("map", {
-            layers: defaultMarkerGroups
-        }).setView([48.545705491847464, 10.634765625], 5);
-
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            'attribution':  'Kartendaten &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> Mitwirkende',
-            'useCache': true
-        }).addTo(map);
-
-        map.on('click', onMapClick);
-
-        L.control.layers(null, controlOverlay, {collapsed:false}).addTo(map);
     }
 
     function addNewEntry() {
