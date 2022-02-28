@@ -2222,9 +2222,9 @@ function add_css(target) {
 
 function get_each_context(ctx, list, i) {
   var child_ctx = ctx.slice();
-  child_ctx[19] = list[i];
+  child_ctx[23] = list[i];
   return child_ctx;
-} // (122:0) {#if (showAddEntryModal)}
+} // (162:0) {#if (showAddEntryModal)}
 
 
 function create_if_block_1(ctx) {
@@ -2277,7 +2277,7 @@ function create_if_block_1(ctx) {
   var get_key = function get_key(ctx) {
     return (
       /*category*/
-      ctx[19].id
+      ctx[23].id
     );
   };
 
@@ -2522,7 +2522,7 @@ function create_if_block_1(ctx) {
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.run_all)(dispose);
     }
   };
-} // (134:20) {#if (addEntryAlert.display)}
+} // (174:20) {#if (addEntryAlert.display)}
 
 
 function create_if_block_2(ctx) {
@@ -2563,14 +2563,14 @@ function create_if_block_2(ctx) {
       if (detaching) (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.detach)(div);
     }
   };
-} // (146:32) {#each offerCategories as category (category.id)}
+} // (186:32) {#each offerCategories as category (category.id)}
 
 
 function create_each_block(key_1, ctx) {
   var option;
   var t_value =
   /*category*/
-  ctx[19].name + "";
+  ctx[23].name + "";
   var t;
   var option_value_value;
   return {
@@ -2581,7 +2581,7 @@ function create_each_block(key_1, ctx) {
       t = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.text)(t_value);
       option.__value = option_value_value =
       /*category*/
-      ctx[19].id;
+      ctx[23].id;
       option.value = option.__value;
       this.first = option;
     },
@@ -2595,13 +2595,13 @@ function create_each_block(key_1, ctx) {
       /*offerCategories*/
       16 && t_value !== (t_value =
       /*category*/
-      ctx[19].name + "")) (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.set_data)(t, t_value);
+      ctx[23].name + "")) (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.set_data)(t, t_value);
 
       if (dirty &
       /*offerCategories*/
       16 && option_value_value !== (option_value_value =
       /*category*/
-      ctx[19].id)) {
+      ctx[23].id)) {
         option.__value = option_value_value;
         option.value = option.__value;
       }
@@ -2610,7 +2610,7 @@ function create_each_block(key_1, ctx) {
       if (detaching) (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.detach)(option);
     }
   };
-} // (171:0) {#if (showDetailEntryModal)}
+} // (211:0) {#if (showDetailEntryModal)}
 
 
 function create_if_block(ctx) {
@@ -2628,21 +2628,37 @@ function create_if_block(ctx) {
   var b0;
   var t4;
   var p0;
+  var t5_value =
+  /*shownEntry*/
+  ctx[6].name + "";
+  var t5;
   var t6;
   var div2;
   var b1;
   var t8;
   var p1;
+  var t9_value =
+  /*shownEntry*/
+  ctx[6].category + "";
+  var t9;
   var t10;
   var div3;
   var b2;
   var t12;
   var p2;
+  var t13_value =
+  /*shownEntry*/
+  ctx[6].description + "";
+  var t13;
   var t14;
   var div4;
   var b3;
   var t16;
   var p3;
+  var t17_value =
+  /*shownEntry*/
+  ctx[6].contact + "";
+  var t17;
   var mounted;
   var dispose;
   return {
@@ -2663,36 +2679,28 @@ function create_if_block(ctx) {
       b0.textContent = "Name";
       t4 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.space)();
       p0 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.element)("p");
-      p0.textContent = "".concat(
-      /*shownEntry*/
-      ctx[6].name);
+      t5 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.text)(t5_value);
       t6 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.space)();
       div2 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.element)("div");
       b1 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.element)("b");
       b1.textContent = "Angebot";
       t8 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.space)();
       p1 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.element)("p");
-      p1.textContent = "".concat(
-      /*shownEntry*/
-      ctx[6].category);
+      t9 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.text)(t9_value);
       t10 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.space)();
       div3 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.element)("div");
       b2 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.element)("b");
       b2.textContent = "Beschreibung";
       t12 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.space)();
       p2 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.element)("p");
-      p2.textContent = "".concat(
-      /*shownEntry*/
-      ctx[6].description);
+      t13 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.text)(t13_value);
       t14 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.space)();
       div4 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.element)("div");
       b3 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.element)("b");
       b3.textContent = "Kontakt";
       t16 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.space)();
       p3 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.element)("p");
-      p3.textContent = "".concat(
-      /*shownEntry*/
-      ctx[6].contact);
+      t17 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.text)(t17_value);
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.attr)(h4, "class", "modal-title");
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.attr)(button, "type", "button");
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.attr)(button, "class", "btn-close");
@@ -2722,21 +2730,25 @@ function create_if_block(ctx) {
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(div1, b0);
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(div1, t4);
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(div1, p0);
+      (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(p0, t5);
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(form, t6);
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(form, div2);
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(div2, b1);
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(div2, t8);
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(div2, p1);
+      (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(p1, t9);
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(form, t10);
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(form, div3);
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(div3, b2);
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(div3, t12);
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(div3, p2);
+      (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(p2, t13);
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(form, t14);
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(form, div4);
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(div4, b3);
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(div4, t16);
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(div4, p3);
+      (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(p3, t17);
 
       if (!mounted) {
         dispose = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.listen)(button, "click",
@@ -2745,7 +2757,28 @@ function create_if_block(ctx) {
         mounted = true;
       }
     },
-    p: svelte_internal__WEBPACK_IMPORTED_MODULE_0__.noop,
+    p: function p(ctx, dirty) {
+      if (dirty &
+      /*shownEntry*/
+      64 && t5_value !== (t5_value =
+      /*shownEntry*/
+      ctx[6].name + "")) (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.set_data)(t5, t5_value);
+      if (dirty &
+      /*shownEntry*/
+      64 && t9_value !== (t9_value =
+      /*shownEntry*/
+      ctx[6].category + "")) (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.set_data)(t9, t9_value);
+      if (dirty &
+      /*shownEntry*/
+      64 && t13_value !== (t13_value =
+      /*shownEntry*/
+      ctx[6].description + "")) (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.set_data)(t13, t13_value);
+      if (dirty &
+      /*shownEntry*/
+      64 && t17_value !== (t17_value =
+      /*shownEntry*/
+      ctx[6].contact + "")) (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.set_data)(t17, t17_value);
+    },
     d: function d(detaching) {
       if (detaching) (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.detach)(div8);
       mounted = false;
@@ -2899,6 +2932,7 @@ function instance($$self, $$props, $$invalidate) {
     msg: ""
   };
   var map;
+  var marker = [];
   var clickedPopup = new leaflet__WEBPACK_IMPORTED_MODULE_2__.Popup();
   var offerCategories = [];
   var newEntry = {
@@ -2919,19 +2953,8 @@ function instance($$self, $$props, $$invalidate) {
     lng: 0.0
   };
   (0,svelte__WEBPACK_IMPORTED_MODULE_3__.onMount)(function () {
+    fetchMarkers();
     fetchOfferCategories();
-    map = leaflet__WEBPACK_IMPORTED_MODULE_2__.map("map").setView([48.545705491847464, 10.634765625], 5);
-    leaflet__WEBPACK_IMPORTED_MODULE_2__.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      'attribution': 'Kartendaten &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> Mitwirkende',
-      'useCache': true
-    }).addTo(map);
-    map.on('click', onMapClick);
-    var test1 = leaflet__WEBPACK_IMPORTED_MODULE_2__.marker([52.35840924385216, 14.068679809570312], {
-      title: "FW"
-    }).addTo(map);
-    test1.on("click", function () {
-      return $$invalidate(2, showDetailEntryModal = true);
-    });
   });
 
   function onMapClick(e) {
@@ -2953,6 +2976,53 @@ function instance($$self, $$props, $$invalidate) {
     axios__WEBPACK_IMPORTED_MODULE_1___default().get((0,_Helper_Config__WEBPACK_IMPORTED_MODULE_4__.routeTo)("api/offer-category/all")).then(function (response) {
       $$invalidate(4, offerCategories = response.data.categories);
     });
+  }
+
+  function fetchMarkers() {
+    axios__WEBPACK_IMPORTED_MODULE_1___default().get((0,_Helper_Config__WEBPACK_IMPORTED_MODULE_4__.routeTo)("api/offer/all")).then(function (response) {
+      if (response.data.status === "ok") {
+        marker = response.data.offers;
+        console.log("UPDATE MARKERS", marker);
+        setupMap(marker);
+      }
+    });
+  }
+
+  function updateDetailModal(offer) {
+    $$invalidate(6, shownEntry.id = offer.id, shownEntry);
+    $$invalidate(6, shownEntry.name = offer.name, shownEntry);
+    $$invalidate(6, shownEntry.description = offer.description, shownEntry);
+    $$invalidate(6, shownEntry.contact = offer.contact, shownEntry);
+    $$invalidate(6, shownEntry.category = offer.category.name, shownEntry);
+    $$invalidate(2, showDetailEntryModal = true);
+  }
+
+  function setupMap(points) {
+    var lineArray = [];
+    var line = leaflet__WEBPACK_IMPORTED_MODULE_2__.layerGroup(lineArray);
+    var overlays = {
+      "Markers": line
+    };
+    marker.forEach(function (point) {
+      var m = leaflet__WEBPACK_IMPORTED_MODULE_2__.marker([point.lat, point.lng], {
+        title: point.category.name
+      }).on("click", function () {
+        return updateDetailModal(point);
+      });
+      console.log("ADM", m);
+      lineArray.push(m);
+    });
+    map = leaflet__WEBPACK_IMPORTED_MODULE_2__.map("map", {
+      layers: [line]
+    }).setView([48.545705491847464, 10.634765625], 5);
+    leaflet__WEBPACK_IMPORTED_MODULE_2__.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      'attribution': 'Kartendaten &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> Mitwirkende',
+      'useCache': true
+    }).addTo(map);
+    map.on('click', onMapClick);
+    leaflet__WEBPACK_IMPORTED_MODULE_2__.control.layers(null, overlays, {
+      collapsed: false
+    }).addTo(map);
   }
 
   function addNewEntry() {

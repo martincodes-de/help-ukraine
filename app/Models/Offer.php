@@ -22,4 +22,8 @@ class Offer extends Model
     protected $attributes = [
         "reviewed" => null
     ];
+
+    public function category() {
+        return $this->belongsTo(OfferCategory::class, "offer_category_id", "id");
+    }
 }

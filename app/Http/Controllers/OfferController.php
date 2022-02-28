@@ -17,6 +17,15 @@ class OfferController extends Controller
         "offer_category_id" => "required|exists:offer_categories,id"
     ];
 
+    public function listAll(Request $request) {
+       $offers = Offer::with("category")->get(["id", "name", "description", "contact", "lat", "lng", "offer_category_id"]);
+
+        return response()->json([
+            "status" => "ok",
+            "offers" => $offers
+        ]);
+    }
+
     public function create(Request $request)
     {
         $validator = Validator::make($request->all(), $this->validationRules);

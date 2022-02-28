@@ -25,5 +25,6 @@ Route::prefix("offer-category")->group(function () {
 });
 
 Route::prefix("offer")->group(function () {
+    Route::get("all", [OfferController::class, "listAll"]);
     Route::post("/create", [OfferController::class, "create"]);
 });

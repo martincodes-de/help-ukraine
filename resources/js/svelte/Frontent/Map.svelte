@@ -18,6 +18,7 @@
     };
 
     let map;
+    let marker = [];
     let clickedPopup = new L.Popup();
 
     let offerCategories = [];
@@ -42,21 +43,8 @@
     };
 
     onMount(() => {
+        fetchMarkers();
         fetchOfferCategories();
-
-        map = L.map("map").setView([48.545705491847464, 10.634765625], 5);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            'attribution':  'Kartendaten &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> Mitwirkende',
-            'useCache': true
-        }).addTo(map);
-
-        map.on('click', onMapClick);
-
-        let test1 = L.marker([52.35840924385216, 14.068679809570312], {
-            title: "FW"
-        }).addTo(map);
-
-        test1.on("click", () => showDetailEntryModal = true);
     });
 
     function onMapClick(e) {
@@ -85,6 +73,58 @@
             .then(response => {
                 offerCategories = response.data.categories;
             });
+    }
+
+    function fetchMarkers() {
+        axios.get(routeTo("api/offer/all"))
+            .then(response => {
+                if (response.data.status === "ok") {
+                    marker = response.data.offers;
+                    console.log("UPDATE MARKERS", marker);
+                    setupMap(marker);
+                }
+            });
+    }
+
+    function updateDetailModal(offer) {
+        shownEntry.id = offer.id;
+        shownEntry.name = offer.name;
+        shownEntry.description = offer.description;
+        shownEntry.contact = offer.contact;
+        shownEntry.category = offer.category.name;
+
+        showDetailEntryModal = true;
+    }
+
+    function setupMap(points) {
+        let lineArray = [];
+        let line = L.layerGroup(lineArray);
+
+        let overlays = {
+            "Markers": line
+        };
+
+        marker.forEach(point => {
+            let m = L.marker([point.lat, point.lng], {
+                title: point.category.name
+            }).on("click", () => updateDetailModal(point));
+
+            console.log("ADM", m);
+            lineArray.push(m);
+        });
+
+        map = L.map("map", {
+            layers: [line]
+        }).setView([48.545705491847464, 10.634765625], 5);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            'attribution':  'Kartendaten &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> Mitwirkende',
+            'useCache': true
+        }).addTo(map);
+
+        map.on('click', onMapClick);
+
+        L.control.layers(null, overlays, {collapsed:false}).addTo(map);
     }
 
     function addNewEntry() {
