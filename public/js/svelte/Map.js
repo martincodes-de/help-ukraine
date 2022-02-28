@@ -2173,6 +2173,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var leaflet__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! leaflet */ "./node_modules/leaflet/dist/leaflet-src.js");
 /* harmony import */ var leaflet__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(leaflet__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var svelte__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! svelte */ "./node_modules/svelte/index.mjs");
+/* harmony import */ var _Helper_Config__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Helper/Config */ "./resources/js/svelte/Helper/Config.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -2214,6 +2215,7 @@ var Map_1 = svelte_internal__WEBPACK_IMPORTED_MODULE_0__.globals.Map;
 
 
 
+
 function add_css(target) {
   (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append_styles)(target, "svelte-bysv2t", "#map.svelte-bysv2t{height:100%;width:100%}.modal-background.svelte-bysv2t{background-color:rgba(0, 0, 7, 0.5)}");
 }
@@ -2222,7 +2224,7 @@ function get_each_context(ctx, list, i) {
   var child_ctx = ctx.slice();
   child_ctx[19] = list[i];
   return child_ctx;
-} // (120:0) {#if (showAddEntryModal)}
+} // (122:0) {#if (showAddEntryModal)}
 
 
 function create_if_block_1(ctx) {
@@ -2520,7 +2522,7 @@ function create_if_block_1(ctx) {
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.run_all)(dispose);
     }
   };
-} // (132:20) {#if (addEntryAlert.display)}
+} // (134:20) {#if (addEntryAlert.display)}
 
 
 function create_if_block_2(ctx) {
@@ -2561,7 +2563,7 @@ function create_if_block_2(ctx) {
       if (detaching) (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.detach)(div);
     }
   };
-} // (144:32) {#each offerCategories as category (category.id)}
+} // (146:32) {#each offerCategories as category (category.id)}
 
 
 function create_each_block(key_1, ctx) {
@@ -2608,7 +2610,7 @@ function create_each_block(key_1, ctx) {
       if (detaching) (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.detach)(option);
     }
   };
-} // (169:0) {#if (showDetailEntryModal)}
+} // (171:0) {#if (showDetailEntryModal)}
 
 
 function create_if_block(ctx) {
@@ -2948,21 +2950,23 @@ function instance($$self, $$props, $$invalidate) {
   }
 
   function fetchOfferCategories() {
-    axios__WEBPACK_IMPORTED_MODULE_1__.get("https://help-ukraine.ddev.site/api/offer-category/all").then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_1___default().get((0,_Helper_Config__WEBPACK_IMPORTED_MODULE_4__.routeTo)("api/offer-category/all")).then(function (response) {
       $$invalidate(4, offerCategories = response.data.categories);
     });
   }
 
   function addNewEntry() {
-    axios__WEBPACK_IMPORTED_MODULE_1__.post("https://help-ukraine.ddev.site/api/offer/create", newEntry).then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_1___default().post((0,_Helper_Config__WEBPACK_IMPORTED_MODULE_4__.routeTo)("api/offer/create"), newEntry).then(function (response) {
       $$invalidate(3, addEntryAlert.display = true, addEntryAlert);
 
       if (response.data.status === "ok") {
         $$invalidate(3, addEntryAlert["class"] = "alert-success", addEntryAlert);
         $$invalidate(3, addEntryAlert.msg = "Dein Angebot wurde hinzugefügt. Danke für deine Hilfe!", addEntryAlert);
-      } else {
+      }
+
+      if (response.data.status === "validation-error") {
         $$invalidate(3, addEntryAlert["class"] = "alert-danger", addEntryAlert);
-        $$invalidate(3, addEntryAlert.msg = "Hier ist uns ein Fehler unterlaufen! Sorry.", addEntryAlert);
+        $$invalidate(3, addEntryAlert.msg = "Du hast Felder nicht korrekt ausgefüllt.", addEntryAlert);
       }
 
       setTimeout(function () {
@@ -3030,6 +3034,40 @@ var Map = /*#__PURE__*/function (_SvelteComponent) {
 }(svelte_internal__WEBPACK_IMPORTED_MODULE_0__.SvelteComponent);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Map);
+
+/***/ }),
+
+/***/ "./resources/js/svelte/Helper/Config.js":
+/*!**********************************************!*\
+  !*** ./resources/js/svelte/Helper/Config.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "config": () => (/* binding */ config),
+/* harmony export */   "routeTo": () => (/* binding */ routeTo)
+/* harmony export */ });
+var config = {
+  env: "dev",
+  prodUrl: "https://pu.techniknews.biz/",
+  devUrl: "https://help-ukraine.ddev.site/"
+};
+function routeTo(pathWithoutBeginningSlash) {
+  var env = config.env;
+  var baseUrl = config.prodUrl;
+
+  if (env === "dev") {
+    baseUrl = config.devUrl;
+  }
+
+  if (pathWithoutBeginningSlash.charAt(0) === "/") {
+    pathWithoutBeginningSlash = pathWithoutBeginningSlash.substring(1);
+  }
+
+  return baseUrl + pathWithoutBeginningSlash;
+}
 
 /***/ }),
 

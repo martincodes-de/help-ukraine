@@ -2,9 +2,10 @@
 <svelte:options tag="map-view" />
 
 <script>
-    import * as axios from "axios";
+    import axios from "axios";
     import * as L from "leaflet";
     import {onMount} from "svelte";
+    import {routeTo} from "../Helper/Config";
 
     let mapEditMode = false;
     let showAddEntryModal = false;
@@ -80,14 +81,14 @@
     }
 
     function fetchOfferCategories() {
-        axios.get("https://help-ukraine.ddev.site/api/offer-category/all")
+        axios.get(routeTo("api/offer-category/all"))
             .then(response => {
                 offerCategories = response.data.categories;
             });
     }
 
     function addNewEntry() {
-        axios.post("https://help-ukraine.ddev.site/api/offer/create", newEntry)
+        axios.post(routeTo("api/offer/create"), newEntry)
             .then(response => {
                 addEntryAlert.display = true;
 
