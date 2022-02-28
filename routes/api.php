@@ -17,11 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix("offer-category")->group(function () {
-    Route::get("/all", function() {
-        return response()->json([
-            "categories" => OfferCategory::all()
-        ]);
-    });
+    Route::get("/all", [\App\Http\Controllers\OfferCategoryController::class, "listAll"]);
 });
 
 Route::prefix("offer")->group(function () {

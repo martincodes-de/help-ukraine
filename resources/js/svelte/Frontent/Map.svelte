@@ -55,7 +55,7 @@
                 title: point.category.name
             }).on("click", () => updateDetailModal(point));
 
-            console.log("MOVE", mkr, "TO", categorys[point.category.id], categorys[point.category.id].name);
+            //console.log("MOVE", mkr, "TO", categorys[point.category.id], categorys[point.category.id].name);
             categorys[point.category.id].marker.push(mkr);
         });
 
@@ -68,7 +68,7 @@
             controlOverlay[value.name] = markerGroup;
         }
 
-        console.log(defaultMarkerGroups, controlOverlay);
+        //console.log(defaultMarkerGroups, controlOverlay);
 
         map = L.map("map", {
             layers: defaultMarkerGroups
@@ -117,7 +117,7 @@
             .then(response => {
                 if (response.data.status === "ok") {
                     marker = response.data.offers;
-                    console.log("GETTED MARKERS", marker);
+                    //console.log("GETTED MARKERS", marker);
                     setupMap(marker);
                 }
             });
