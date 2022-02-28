@@ -1,5 +1,5 @@
 export let config = {
-    env: "dev",
+    env: "prod",
     prodUrl: "https://pu.techniknews.biz/",
     devUrl: "https://help-ukraine.ddev.site/"
 };
