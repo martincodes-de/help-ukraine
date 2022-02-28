@@ -123,12 +123,16 @@
             });
     }
 
+    //
+
     function updateDetailModal(offer) {
         shownEntry.id = offer.id;
         shownEntry.name = offer.name;
         shownEntry.description = offer.description;
         shownEntry.contact = offer.contact;
         shownEntry.category = offer.category.name;
+        shownEntry.lat = offer.lat;
+        shownEntry.lng = offer.lng;
 
         showDetailEntryModal = true;
     }
@@ -140,7 +144,7 @@
 
                 if (response.data.status === "ok") {
                     addEntryAlert.class = "alert-success";
-                    addEntryAlert.msg = "Dein Angebot wurde hinzugefügt. Danke für deine Hilfe!";
+                    addEntryAlert.msg = "Dein Angebot wurde hinzugefügt. Du siehst es, nachdem du die Karte neulädst. Danke für deine Hilfe!";
                 }
 
                 if (response.data.status === "validation-error") {
@@ -202,8 +206,8 @@
 
                         <div class="mb-3">
                             <label for="contact">Kontakt</label><br>
-                            <small>Tipp: Erstellen Sie sich extra für dieses Angebot eine E-Mail oder so. Ihre Kontaktdaten sind öffentlich sichtbar.</small>
-                            <textarea bind:value={newEntry.contact} class="form-control" rows="4" id="contact"></textarea>
+                            <small>Tipp: Erstelle dir für dieses Angebot extra Kontaktdaten. Diese Kontaktdaten werden 1:1 öffentlich sichtbar sein.</small>
+                            <textarea bind:value={newEntry.contact} class="form-control mt-2" rows="4" id="contact"></textarea>
                         </div>
 
                         <button on:click|preventDefault={addNewEntry} class="btn btn-outline-success">Einfügen</button>
@@ -246,6 +250,9 @@
                             <p>{shownEntry.contact}</p>
                         </div>
                     </form>
+
+                    <a href="http://maps.google.de/maps?q={shownEntry.lat},{shownEntry.lng}&t=k&z=12"
+                       target="_blank" class="btn btn-outline-success">Google Maps</a>
                 </div>
             </div>
         </div>
