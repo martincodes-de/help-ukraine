@@ -10,6 +10,12 @@
     let showAddEntryModal = false;
     let showDetailEntryModal = false;
 
+    let addEntryAlert = {
+        display: false,
+        class: "alert-success",
+        msg: ""
+    };
+
     let map;
     let clickedPopup = new L.Popup();
 
@@ -67,14 +73,10 @@
             newEntry.lat = e.latlng.lat;
             newEntry.lng = e.latlng.lng;
 
-            document.getElementById("create-new-entry").addEventListener("click", toggleAddEntryModal);
+            document.getElementById("create-new-entry").addEventListener("click", () => showAddEntryModal = true);
         }
 
         console.log("POS", e.latlng);
-    }
-
-    function toggleAddEntryModal() {
-        showAddEntryModal = true;
     }
 
     function fetchOfferCategories() {
@@ -87,11 +89,19 @@
     function addNewEntry() {
         axios.post("https://help-ukraine.ddev.site/api/offer/create", newEntry)
             .then(response => {
+                addEntryAlert.display = true;
+
                 if (response.data.status === "ok") {
-                    alert("Erfolgreich eingetragen! Danke für deine Hilfe!");
-                } else {
-                    alert("Hier ist etwas schiefgelaufen!");
+                    addEntryAlert.class = "alert-success";
+                    addEntryAlert.msg = "Dein Angebot wurde hinzugefügt. Danke für deine Hilfe!";
                 }
+
+                if (response.data.status === "validation-error") {
+                    addEntryAlert.class = "alert-danger";
+                    addEntryAlert.msg = "Du hast Felder nicht korrekt ausgefüllt.";
+                }
+
+                setTimeout(() => addEntryAlert.display = false, 5000);
             });
     }
 </script>
@@ -120,6 +130,10 @@
 
                 <!-- Modal body -->
                 <div class="modal-body">
+                    {#if (addEntryAlert.display)}
+                        <div class="alert {addEntryAlert.class}">{addEntryAlert.msg}</div>
+                    {/if}
+
                     <form>
                         <div class="mb-3">
                             <label for="name" class="form-label">Dein Name</label>
