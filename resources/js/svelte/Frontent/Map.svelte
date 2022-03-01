@@ -75,7 +75,7 @@
         }).setView([48.545705491847464, 10.634765625], 5);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            'attribution':  'Kartendaten &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> Mitwirkende',
+            'attribution':  'Mapdata &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
             'useCache': true
         }).addTo(map);
 
@@ -86,8 +86,8 @@
 
     function onMapClick(e) {
         let content = `
-            Du hast hier geklickt. Möchtest du einen Eintrag erstellen?
-            <button id="create-new-entry" class="badge bg-success">Erstellen</button>
+            You clicked on this, do you wish to create a help offer?
+            <button id="create-new-entry" class="badge bg-success">Create help offer</button>
         `;
 
         if (mapEditMode) {
@@ -144,12 +144,12 @@
 
                 if (response.data.status === "ok") {
                     addEntryAlert.class = "alert-success";
-                    addEntryAlert.msg = "Dein Angebot wurde hinzugefügt. Du siehst es, nachdem du die Karte neulädst. Danke für deine Hilfe!";
+                    addEntryAlert.msg = "Your offer was added. You can now see it, after you reload the map. Thank you alot for your help!";
                 }
 
                 if (response.data.status === "validation-error") {
                     addEntryAlert.class = "alert-danger";
-                    addEntryAlert.msg = "Du hast Felder nicht korrekt ausgefüllt.";
+                    addEntryAlert.msg = "The information entered into the fields was not correct";
                 }
 
                 setTimeout(() => addEntryAlert.display = false, 5000);
@@ -158,11 +158,11 @@
 </script>
 
 <div class="container bg-white">
-    <b>Einstellungen</b>
+    <b>Settings</b>
     <div class="form-check form-switch">
         <input bind:checked={mapEditMode} class="form-check-input" type="checkbox" id="switchMapClick" name="mapClickType">
         <label class="form-check-label" for="switchMapClick">
-            Hilfe anbieten / hinzufügen
+            Offer help
         </label>
     </div>
 </div>
@@ -175,7 +175,7 @@
             <div class="modal-content">
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Punkt hinzufügen</h4>
+                    <h4 class="modal-title">Add a new help offer</h4>
                     <button on:click={() => showAddEntryModal = false} type="button" class="btn-close"></button>
                 </div>
 
@@ -187,11 +187,11 @@
 
                     <form>
                         <div class="mb-3">
-                            <label for="name" class="form-label">Dein Name</label>
+                            <label for="name" class="form-label">Your name</label>
                             <input bind:value={newEntry.name} type="text" class="form-control" id="name" name="name">
                         </div>
                         <div class="mb-3">
-                            <label for="offer-category" class="form-label">Dein Angebot</label>
+                            <label for="offer-category" class="form-label">Your offer</label>
                             <select bind:value={newEntry.offer_category_id} id="offer-category" class="form-select" required>
                                 {#each offerCategories as category (category.id)}
                                     <option value={category.id}>{category.name}</option>
@@ -200,17 +200,17 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="description">Beschreibung</label>
+                            <label for="description">Offer description</label>
                             <textarea bind:value={newEntry.description} class="form-control" rows="4" id="description"></textarea>
                         </div>
 
                         <div class="mb-3">
-                            <label for="contact">Kontakt</label><br>
-                            <small>Tipp: Erstelle dir für dieses Angebot extra Kontaktdaten. Diese Kontaktdaten werden 1:1 öffentlich sichtbar sein.</small>
+                            <label for="contact">Contact</label><br>
+                            <small>Tip: Use new/unique contact information for your help offers, the contact information entered will be publicly accessible!</small>
                             <textarea bind:value={newEntry.contact} class="form-control mt-2" rows="4" id="contact"></textarea>
                         </div>
 
-                        <button on:click|preventDefault={addNewEntry} class="btn btn-outline-success">Einfügen</button>
+                        <button on:click|preventDefault={addNewEntry} class="btn btn-outline-success">Add</button>
                     </form>
                 </div>
             </div>
@@ -236,17 +236,17 @@
                             <p>{shownEntry.name}</p>
                         </div>
                         <div class="mb-3">
-                            <b>Angebot</b>
+                            <b>Offer</b>
                             <p>{shownEntry.category}</p>
                         </div>
 
                         <div class="mb-3">
-                            <b>Beschreibung</b>
+                            <b>Offer description</b>
                             <p>{shownEntry.description}</p>
                         </div>
 
                         <div class="mb-3">
-                            <b>Kontakt</b>
+                            <b>Contact</b>
                             <p>{shownEntry.contact}</p>
                         </div>
                     </form>

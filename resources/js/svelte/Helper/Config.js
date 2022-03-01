@@ -5,10 +5,10 @@ export let config = {
 };
 
 export let groupedMarkersByCategory = {
-    1: {name: "Unterkünfte", marker: []},
-    2: {name: "Kleidungsspende", marker: []},
-    3: {name: "Essen & Trinken", marker: []},
-    4: {name: "Sonstiges", marker: []},
+    1: {name: "Accommodation", marker: []},
+    2: {name: "Clothing donations", marker: []},
+    3: {name: "Food and drinks", marker: []},
+    4: {name: "Other", marker: []},
 };
 
 export function routeTo(pathWithoutBeginningSlash) {
