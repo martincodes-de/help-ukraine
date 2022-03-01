@@ -261,7 +261,7 @@
 
 <style>
     #map {
-        height: 100%;
+        height: 89%;
         width: 100%;
     }
 
