@@ -171,7 +171,7 @@
 
 {#if (showAddEntryModal)}
     <div class="modal d-block modal-background" id="myModal">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <!-- Modal Header -->
                 <div class="modal-header">
@@ -219,7 +219,7 @@
 {/if}
 
 {#if (showDetailEntryModal)}
-    <div class="modal d-block modal-background" id="myModal2">
+    <div class="modal d-block modal-background modal-dialog-centered" id="myModal2">
         <div class="modal-dialog">
             <div class="modal-content">
                 <!-- Modal Header -->

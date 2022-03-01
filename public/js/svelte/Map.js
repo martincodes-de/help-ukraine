@@ -2375,7 +2375,7 @@ function create_if_block_1(ctx) {
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.attr)(button1, "class", "btn btn-outline-success");
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.attr)(div5, "class", "modal-body");
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.attr)(div6, "class", "modal-content");
-      (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.attr)(div7, "class", "modal-dialog");
+      (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.attr)(div7, "class", "modal-dialog modal-dialog-centered");
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.attr)(div8, "class", "modal d-block modal-background svelte-1ij02z9");
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.attr)(div8, "id", "myModal");
     },
@@ -2726,7 +2726,7 @@ function create_if_block(ctx) {
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.attr)(div5, "class", "modal-body");
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.attr)(div6, "class", "modal-content");
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.attr)(div7, "class", "modal-dialog");
-      (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.attr)(div8, "class", "modal d-block modal-background svelte-1ij02z9");
+      (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.attr)(div8, "class", "modal d-block modal-background modal-dialog-centered svelte-1ij02z9");
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.attr)(div8, "id", "myModal2");
     },
     m: function m(target, anchor) {
