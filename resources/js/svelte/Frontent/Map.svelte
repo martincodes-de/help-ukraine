@@ -157,7 +157,7 @@
     }
 </script>
 
-<div class="container bg-white">
+<div class="container bg-white px-5">
     <b>Settings</b>
     <div class="form-check form-switch">
         <input bind:checked={mapEditMode} class="form-check-input" type="checkbox" id="switchMapClick" name="mapClickType">

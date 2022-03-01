@@ -2860,7 +2860,7 @@ function create_fragment(ctx) {
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.attr)(label, "class", "form-check-label");
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.attr)(label, "for", "switchMapClick");
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.attr)(div0, "class", "form-check form-switch");
-      (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.attr)(div1, "class", "container bg-white");
+      (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.attr)(div1, "class", "container bg-white px-5");
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.attr)(div2, "id", "map");
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.attr)(div2, "class", "svelte-1ij02z9");
     },
