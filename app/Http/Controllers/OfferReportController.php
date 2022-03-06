@@ -20,7 +20,9 @@ class OfferReportController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 "status" => "validation-error",
-                "errors" => $validator->errors()->all()
+                "alertMsg" => "Validationerrors:",
+                "alertClass" => "alert-danger",
+                "errors" => $validator->errors()->all(),
             ]);
         }
 
