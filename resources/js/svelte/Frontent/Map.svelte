@@ -12,6 +12,11 @@
     let showAddEntryModal = false;
     let showDetailEntryModal = false;
 
+    let detailModalReport = {
+        visibile: false,
+        btnText: "Report",
+    }
+
     let addEntryAlert = {
         display: false,
         class: "alert-success",
@@ -156,6 +161,16 @@
                 setTimeout(() => addEntryAlert.display = false, 5000);
             });
     }
+
+    function toggleReportForm() {
+        if (!detailModalReport.visibile) {
+            detailModalReport.btnText = "Close report form";
+            detailModalReport.visibile = true;
+        } else {
+            detailModalReport.btnText = "Report";
+            detailModalReport.visibile = false;
+        }
+    }
 </script>
 
 <div class="container bg-white px-5">
@@ -255,8 +270,13 @@
                     <a href="http://maps.google.de/maps?q={shownEntry.lat},{shownEntry.lng}&t=k&z=12"
                        target="_blank" class="btn btn-outline-success">Google Maps</a>
 
+                    <button on:click|preventDefault={toggleReportForm}
+                            class="btn btn-outline-danger">{detailModalReport.btnText}</button>
+
                     <div class="mt-2">
-                        <ReportForm offerId={shownEntry.id}/>
+                        {#if detailModalReport.visibile}
+                            <ReportForm offerId={shownEntry.id}/>
+                        {/if}
                     </div>
                 </div>
             </div>
