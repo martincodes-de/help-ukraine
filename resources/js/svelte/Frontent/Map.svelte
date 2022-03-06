@@ -155,7 +155,7 @@
 
                 if (response.data.status === "validation-error") {
                     addEntryAlert.class = "alert-danger";
-                    addEntryAlert.msg = "The information entered into the fields was not correct";
+                    addEntryAlert.msg = "The entered information is incomplete/incorrect";
                 }
 
                 setTimeout(() => addEntryAlert.display = false, 5000);
