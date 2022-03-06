@@ -6,6 +6,7 @@
     import * as L from "leaflet";
     import {onMount} from "svelte";
     import {groupedMarkersByCategory, routeTo} from "../Helper/Config";
+    import ReportForm from "./OfferReportForm.svelte";
 
     let mapEditMode = false;
     let showAddEntryModal = false;
@@ -253,6 +254,10 @@
 
                     <a href="http://maps.google.de/maps?q={shownEntry.lat},{shownEntry.lng}&t=k&z=12"
                        target="_blank" class="btn btn-outline-success">Google Maps</a>
+
+                    <div class="mt-2">
+                        <ReportForm offerId={shownEntry.id}/>
+                    </div>
                 </div>
             </div>
         </div>
