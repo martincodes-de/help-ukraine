@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\OfferCategoryController;
 use App\Http\Controllers\OfferController;
+use App\Http\Controllers\OfferReportController;
 use App\Models\OfferCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -17,10 +19,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix("offer-category")->group(function () {
-    Route::get("/all", [\App\Http\Controllers\OfferCategoryController::class, "listAll"]);
+    Route::get("/all", [OfferCategoryController::class, "listAll"]);
 });
 
 Route::prefix("offer")->group(function () {
+    Route::post("report", [OfferReportController::class, "create"]);
+
     Route::get("all", [OfferController::class, "listAll"]);
-    Route::post("/create", [OfferController::class, "create"]);
+    Route::post("create", [OfferController::class, "create"]);
 });
