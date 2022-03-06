@@ -20,6 +20,7 @@ return new class extends Migration
             $table->mediumText("contact");
             $table->double("lat");
             $table->double("lng");
+            $table->date("visible_until");
 
             $table->unsignedBigInteger("offer_category_id");
             $table->foreign("offer_category_id")->references("id")->on("offer_categories");

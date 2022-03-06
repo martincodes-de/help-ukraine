@@ -16,7 +16,8 @@ class Offer extends Model
         "contact",
         "lat",
         "lng",
-        "reviewed"
+        "visible_until",
+        "reviewed",
     ];
 
     protected $attributes = [

@@ -20,7 +20,8 @@
     let addEntryAlert = {
         display: false,
         class: "alert-success",
-        msg: ""
+        msg: "",
+        errors: [],
     };
 
     let map;
@@ -34,6 +35,7 @@
         offer_category_id: 0,
         description: "",
         contact: "",
+        visible_until: "",
         lat: 0.0,
         lng: 0.0
     };
@@ -150,15 +152,17 @@
 
                 if (response.data.status === "ok") {
                     addEntryAlert.class = "alert-success";
-                    addEntryAlert.msg = "Your offer was added. You can now see it, after you reload the map. Thank you alot for your help!";
+                    addEntryAlert.msg = "Your offer was added and will be reviewed by our moderation. After that, it will be public. Thank you alot for your help!";
+                    addEntryAlert.errors = [];
                 }
 
                 if (response.data.status === "validation-error") {
                     addEntryAlert.class = "alert-danger";
                     addEntryAlert.msg = "The entered information is incomplete/incorrect";
+                    addEntryAlert.errors = response.data.errors;
                 }
 
-                setTimeout(() => addEntryAlert.display = false, 5000);
+                setTimeout(() => addEntryAlert.display = false, 10000);
             });
     }
 
@@ -198,7 +202,14 @@
                 <!-- Modal body -->
                 <div class="modal-body">
                     {#if (addEntryAlert.display)}
-                        <div class="alert {addEntryAlert.class}">{addEntryAlert.msg}</div>
+                        <div class="alert {addEntryAlert.class}">
+                            {addEntryAlert.msg}
+                            {#each addEntryAlert.errors as error (error)}
+                                <ul>
+                                    <li>Error: {error}</li>
+                                </ul>
+                            {/each}
+                        </div>
                     {/if}
 
                     <form>
@@ -224,6 +235,11 @@
                             <label for="contact">Contact</label><br>
                             <small>Tip: Use new/unique contact information for your help offers, the contact information entered will be publicly accessible!</small>
                             <textarea bind:value={newEntry.contact} class="form-control mt-2" rows="4" id="contact"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="visible_until">Visible on map until</label><br>
+                            <input type="date" bind:value={newEntry.visible_until} class="form-control mt-2" id="visible_until" required/>
                         </div>
 
                         <button on:click|preventDefault={addNewEntry} class="btn btn-outline-success">Add</button>

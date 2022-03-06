@@ -14,7 +14,8 @@ class OfferController extends Controller
         "contact" => "required",
         "lat" => "required",
         "lng" => "required",
-        "offer_category_id" => "required|exists:offer_categories,id"
+        "visible_until" => "required|date|after_or_equal:today",
+        "offer_category_id" => "required|exists:offer_categories,id",
     ];
 
     public function listAll(Request $request) {
@@ -54,6 +55,7 @@ class OfferController extends Controller
         $offer->offer_category_id = $request->get("offer_category_id");
         $offer->description = $request->get("description");
         $offer->contact = $request->get("contact");
+        $offer->visible_until = $request->get("visible_until");
         $offer->lat = $request->get("lat");
         $offer->lng = $request->get("lng");
 
