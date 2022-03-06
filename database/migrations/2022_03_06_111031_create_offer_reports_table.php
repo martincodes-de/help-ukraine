@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
 
             $table->unsignedBigInteger("offer_id");
-            $table->foreign("offer_id")->references("id")->on("offers");
+            $table->foreign("offer_id")->references("id")->on("offers")->onDelete("cascade");
 
             $table->string("reason");
             $table->string("decision")->nullable();
