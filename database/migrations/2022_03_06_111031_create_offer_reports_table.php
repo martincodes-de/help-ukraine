@@ -21,7 +21,7 @@ return new class extends Migration
 
             $table->string("reason");
             $table->string("decision")->nullable();
-            $table->dateTime("solved_at");
+            $table->dateTime("solved_at")->nullable();
             $table->timestamps();
         });
     }
