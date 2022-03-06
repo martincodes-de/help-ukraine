@@ -35,7 +35,7 @@
                         <td>{{$offer->updated_at->format("d.m.Y, H:i")}}</td>
                         <td>{{count($offer->reports)}}</td>
                         <td>
-                            <a href="#">Edit</a>
+                            <a href="{{route("moderation-edit", ["id" => $offer->id])}}">Edit</a>
                             <a href="#">Show Reports</a>
                         </td>
                     </tr>

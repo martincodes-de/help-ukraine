@@ -75,4 +75,11 @@ class OfferController extends Controller
             "offers" => Offer::all()->sortByDesc("created_at")
         ]);
     }
+
+    public function showModerationEdit(Request $request, int $offerId)
+    {
+        return view("moderation.offer.edit", [
+            "offer" => Offer::findOrFail($offerId)
+        ]);
+    }
 }
