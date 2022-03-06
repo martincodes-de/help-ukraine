@@ -26,6 +26,17 @@ class OfferController extends Controller
         ]);
     }
 
+    public function listAllReviewed(Request $request) {
+        $offers = Offer::with("category")
+                    ->where("reviewed", "!=", null)
+                    ->get(["id", "name", "description", "contact", "lat", "lng", "offer_category_id"]);
+
+        return response()->json([
+            "status" => "ok",
+            "offers" => $offers
+        ]);
+    }
+
     public function create(Request $request)
     {
         $validator = Validator::make($request->all(), $this->validationRules);

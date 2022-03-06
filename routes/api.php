@@ -26,5 +26,6 @@ Route::prefix("offer")->group(function () {
     Route::post("report", [OfferReportController::class, "create"]);
 
     Route::get("all", [OfferController::class, "listAll"]);
+    Route::get("all-reviewed", [OfferController::class, "listAllReviewed"]);
     Route::post("create", [OfferController::class, "create"]);
 });

@@ -119,7 +119,7 @@
     }
 
     function fetchMarkers() {
-        axios.get(routeTo("api/offer/all"))
+        axios.get(routeTo("api/offer/all-reviewed"))
             .then(response => {
                 if (response.data.status === "ok") {
                     marker = response.data.offers;
