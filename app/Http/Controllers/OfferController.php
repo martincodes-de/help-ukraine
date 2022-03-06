@@ -29,7 +29,10 @@ class OfferController extends Controller
 
     public function listAllReviewed(Request $request) {
         $offers = Offer::with("category")
-                    ->where("reviewed", "!=", null)
+                    ->where([
+                        ["reviewed", "!=", null],
+                        ["visible_until", ">=", date("Y.m.d")]
+                    ])
                     ->get(["id", "name", "description", "contact", "lat", "lng", "offer_category_id"]);
 
         return response()->json([
