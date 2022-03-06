@@ -24,7 +24,17 @@ class Offer extends Model
         "reviewed" => null
     ];
 
+    protected $dates = [
+        "reviewed",
+        "visible_until"
+    ];
+
     public function category() {
         return $this->belongsTo(OfferCategory::class, "offer_category_id", "id");
+    }
+
+    public function reports()
+    {
+        return $this->hasMany(OfferReport::class);
     }
 }

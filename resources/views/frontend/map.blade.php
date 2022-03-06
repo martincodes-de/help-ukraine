@@ -1,4 +1,4 @@
-@extends("frontend.template")
+@extends("template")
 
 @section("title", "Map")
 

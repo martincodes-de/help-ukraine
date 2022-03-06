@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OfferController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,4 +20,8 @@ Route::get('/', function () {
 
 Route::get("/map", function () {
     return view("frontend.map");
+});
+
+Route::prefix("moderation")->group(function () {
+    Route::get("offer/all", [OfferController::class, "showModerationList"])->name("moderation-all-offers");
 });

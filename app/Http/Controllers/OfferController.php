@@ -69,4 +69,10 @@ class OfferController extends Controller
             "offer" => $offer,
         ]);
     }
+
+    public function showModerationList(Request $request) {
+        return view("moderation.offer.index", [
+            "offers" => Offer::all()->sortByDesc("created_at")
+        ]);
+    }
 }
