@@ -39,6 +39,19 @@
                         <label for="name">Name</label>
                         <input type="text" id="name" name="name" value="{{$offer->name}}" class="form-control" required>
                     </div>
+
+                    <!-- Only for the map view -->
+                    <div class="d-none">
+                        <div class="mb-2">
+                            <label for="lat">Lat</label>
+                            <input type="text" id="lat" name="lat" value="{{$offer->lat}}" class="form-control">
+                        </div>
+                        <div class="mb-2">
+                            <label for="lng">Lng</label>
+                            <input type="text" id="lng" name="lng" value="{{$offer->lng}}" class="form-control">
+                        </div>
+                    </div>
+
                     <div class="mb-2">
                         <label for="offer_category_id">Category</label>
                         <select id="offer_category_id" name="offer_category_id" class="form-select" required>
@@ -79,6 +92,13 @@
                         <button class="mt-1 btn btn-secondary">Perform selected action</button>
                     </div>
                 </form>
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+                      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+                      crossorigin=""/>
+                <moderation-map></moderation-map>
             </div>
         </div>
     </div>
