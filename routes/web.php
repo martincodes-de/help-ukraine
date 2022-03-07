@@ -16,11 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('frontend.homepage');
-});
+})->name("home");
 
 Route::get("/map", function () {
     return view("frontend.map");
-});
+})->name("map");
 
 Route::prefix("moderation")->group(function () {
     Route::get("offer/all", [OfferController::class, "showModerationList"])->name("moderation-all-offers");
