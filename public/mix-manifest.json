@@ -1,6 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
     "/js/svelte/Map.js": "/js/svelte/Map.js",
+    "/js/svelte/ModerationMap.js": "/js/svelte/ModerationMap.js",
     "/js/svelte/Navigation.js": "/js/svelte/Navigation.js",
     "/js/svelte/OfferReportForm.js": "/js/svelte/OfferReportForm.js",
     "/js/svelte/template.js": "/js/svelte/template.js",
