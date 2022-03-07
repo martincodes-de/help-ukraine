@@ -26,6 +26,7 @@ return new class extends Migration
             $table->foreign("offer_category_id")->references("id")->on("offer_categories");
 
             $table->dateTime("reviewed")->nullable();
+            $table->text("moderation_notice")->nullable();
             $table->timestamps();
         });
     }

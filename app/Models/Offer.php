@@ -18,6 +18,7 @@ class Offer extends Model
         "lng",
         "visible_until",
         "reviewed",
+        "moderation_notice",
     ];
 
     protected $attributes = [

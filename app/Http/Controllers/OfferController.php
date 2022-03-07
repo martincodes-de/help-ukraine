@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Offer;
+use App\Models\OfferCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -79,7 +80,8 @@ class OfferController extends Controller
     public function showModerationEdit(Request $request, int $offerId)
     {
         return view("moderation.offer.edit", [
-            "offer" => Offer::findOrFail($offerId)
+            "offer" => Offer::findOrFail($offerId),
+            "offerCategories" => OfferCategory::all()
         ]);
     }
 }
