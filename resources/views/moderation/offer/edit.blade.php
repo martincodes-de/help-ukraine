@@ -30,7 +30,7 @@
                     @method("PATCH")
                     <div class="mb-2">
                         @isset($offer->reviewed)
-                            <span class="badge bg-success">Reviewed {{$offer->reviewed->format("d.m.Y, H:i")}} (public)</span>
+                            <span class="badge bg-success">Reviewed {{$offer->reviewed->format("d.m.Y")}} (public)</span>
                         @else
                             <span class="badge bg-dark">Not reviewed (not public)</span>
                         @endisset

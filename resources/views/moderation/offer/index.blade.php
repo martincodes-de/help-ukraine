@@ -28,7 +28,7 @@
                             </td>
                         @else
                             <td>
-                                <span class="badge bg-success">yes - {{$offer->reviewed->format("d.m.Y, H:i")}}</span>
+                                <span class="badge bg-success">yes - {{$offer->reviewed->format("d.m.Y")}}</span>
                             </td>
                         @endif
                         <td>{{$offer->created_at->format("d.m.Y, H:i")}}</td>
