@@ -17,6 +17,8 @@ class OfferController extends Controller
         "lng" => "required",
         "visible_until" => "required|date|after_or_equal:today",
         "offer_category_id" => "required|exists:offer_categories,id",
+        "moderation_notice" => "string|nullable",
+        "action" => "string|nullable|in:update,toggleReviewedStatus",
     ];
 
     public function listAll(Request $request) {
@@ -83,5 +85,44 @@ class OfferController extends Controller
             "offer" => Offer::findOrFail($offerId),
             "offerCategories" => OfferCategory::all()
         ]);
+    }
+
+    public function editViaModeration(Request $request, int $offerId)
+    {
+        $this->validate($request, [
+            "name" => "required|string",
+            "description" => "required|string",
+            "contact" => "required",
+            "visible_until" => "required|date|after_or_equal:today",
+            "offer_category_id" => "required|exists:offer_categories,id",
+            "moderation_notice" => "string|nullable",
+            "action" => "string|nullable|in:update,toggleReviewedStatus",
+        ]);
+
+        $offer = Offer::findOrFail($offerId);
+        $action = $request->input("action");
+
+        if (!in_array($action, ["update", "toggleReviewedStatus"])) {
+            return redirect()->back()->withErrors([
+                "Your action was not correct. Try again."
+            ]);
+        }
+
+        if ($action === "update") {
+            $offer->name = $request->input("name");
+            $offer->description = $request->input("description");
+            $offer->contact = $request->input("contact");
+            $offer->visible_until = $request->input("visible_until");
+            $offer->offer_category_id = $request->input("offer_category_id");
+            $offer->moderation_notice = $request->input("moderation_notice");
+        }
+
+        if ($action === "toggleReviewedStatus") {
+            $offer->reviewed = (is_null($offer->reviewed)) ? date("Y-m-d") : null;
+        }
+
+        $offer->save();
+
+        return back()->with("success", "Action ({$action}) executed.");
     }
 }

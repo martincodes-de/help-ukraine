@@ -25,4 +25,5 @@ Route::get("/map", function () {
 Route::prefix("moderation")->group(function () {
     Route::get("offer/all", [OfferController::class, "showModerationList"])->name("moderation-all-offers");
     Route::get("offer/edit/{id}", [OfferController::class, "showModerationEdit"])->name("moderation-edit");
+    Route::patch("offer/edit/{id}", [OfferController::class, "editViaModeration"]);
 });

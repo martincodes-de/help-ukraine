@@ -8,6 +8,23 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-8">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <b>Action failed!</b>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                @if (session("success"))
+                    <div class="alert alert-success">
+                        {{session("success")}}
+                    </div>
+                @endif
+
                 <form method="post">
                     @csrf
                     @method("PATCH")
@@ -23,8 +40,8 @@
                         <input type="text" id="name" name="name" value="{{$offer->name}}" class="form-control" required>
                     </div>
                     <div class="mb-2">
-                        <label for="category">Category</label>
-                        <select id="category" name="category" class="form-select" required>
+                        <label for="offer_category_id">Category</label>
+                        <select id="offer_category_id" name="offer_category_id" class="form-select" required>
                             <option value="{{$offer->category->id}}">current: {{$offer->category->name}}</option>
                             @foreach($offerCategories as $category)
                                 <option value="{{$category->id}}">change to: {{$category->name}}</option>
@@ -48,8 +65,8 @@
                     </div>
                     <hr>
                     <div class="mb-2">
-                        <label for="modnotice">Moderation Notice</label>
-                        <textarea id="modnotice" name="modnotice"
+                        <label for="moderation_notice">Moderation Notice</label>
+                        <textarea id="moderation_notice" name="moderation_notice"
                                   class="form-control">{{$offer->moderation_notice}}</textarea>
                     </div>
                     <div class="mb-2">
