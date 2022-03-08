@@ -1,0 +1,4 @@
+food - green
+clothes - yellow/red
+house - blue
+etc - purple?
