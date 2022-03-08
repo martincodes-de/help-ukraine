@@ -45,7 +45,7 @@
         name: "Peter",
         category: "Kleidungerspende",
         description: "Ich spende Kleidung <b>bei</b> Vielmann!",
-        contact: "Schreib mir per Insta @theodor.xyz",
+        contact: "Schreib mir per Insta @x",
         lat: 0.0,
         lng: 0.0
     };
@@ -60,10 +60,12 @@
 
         marker.forEach(point => {
             let mkr = L.marker([point.lat, point.lng], {
-                title: point.category.name
+                title: point.category.name,
+                icon: L.icon({
+                    iconUrl: routeTo("img/map-marker/"+point.category["marker-icon"])
+                })
             }).on("click", () => updateDetailModal(point));
 
-            //console.log("MOVE", mkr, "TO", categorys[point.category.id], categorys[point.category.id].name);
             categorys[point.category.id].marker.push(mkr);
         });
 
