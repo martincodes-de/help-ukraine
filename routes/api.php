@@ -31,5 +31,5 @@ Route::prefix("offer")->group(function () {
     Route::post("create", [OfferController::class, "create"]);
 
 
-    Route::get("fetch-via-api", [FetchHelpPeopleLeaveUkraineEV::class, "fetch"]);
+    Route::get("fetch-external", [FetchHelpPeopleLeaveUkraineEV::class, "fetch"]);
 });
