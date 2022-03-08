@@ -2232,7 +2232,7 @@ function get_each_context_1(ctx, list, i) {
   var child_ctx = ctx.slice();
   child_ctx[29] = list[i];
   return child_ctx;
-} // (192:0) {#if (showAddEntryModal)}
+} // (194:0) {#if (showAddEntryModal)}
 
 
 function create_if_block_2(ctx) {
@@ -2568,7 +2568,7 @@ function create_if_block_2(ctx) {
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.run_all)(dispose);
     }
   };
-} // (204:20) {#if (addEntryAlert.display)}
+} // (206:20) {#if (addEntryAlert.display)}
 
 
 function create_if_block_3(ctx) {
@@ -2653,7 +2653,7 @@ function create_if_block_3(ctx) {
       }
     }
   };
-} // (207:28) {#each addEntryAlert.errors as error (error)}
+} // (209:28) {#each addEntryAlert.errors as error (error)}
 
 
 function create_each_block_1(key_1, ctx) {
@@ -2695,7 +2695,7 @@ function create_each_block_1(key_1, ctx) {
       if (detaching) (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.detach)(ul);
     }
   };
-} // (223:32) {#each offerCategories as category (category.id)}
+} // (225:32) {#each offerCategories as category (category.id)}
 
 
 function create_each_block(key_1, ctx) {
@@ -2742,7 +2742,7 @@ function create_each_block(key_1, ctx) {
       if (detaching) (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.detach)(option);
     }
   };
-} // (253:0) {#if (showDetailEntryModal)}
+} // (255:0) {#if (showDetailEntryModal)}
 
 
 function create_if_block(ctx) {
@@ -3012,7 +3012,7 @@ function create_if_block(ctx) {
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.run_all)(dispose);
     }
   };
-} // (293:24) {#if detailModalReport.visibile}
+} // (295:24) {#if detailModalReport.visibile}
 
 
 function create_if_block_1(ctx) {
@@ -3240,7 +3240,7 @@ function instance($$self, $$props, $$invalidate) {
     name: "Peter",
     category: "Kleidungerspende",
     description: "Ich spende Kleidung <b>bei</b> Vielmann!",
-    contact: "Schreib mir per Insta @theodor.xyz",
+    contact: "Schreib mir per Insta @x",
     lat: 0.0,
     lng: 0.0
   };
@@ -3253,11 +3253,13 @@ function instance($$self, $$props, $$invalidate) {
     var categorys = _Helper_Config__WEBPACK_IMPORTED_MODULE_4__.groupedMarkersByCategory;
     marker.forEach(function (point) {
       var mkr = leaflet__WEBPACK_IMPORTED_MODULE_2__.marker([point.lat, point.lng], {
-        title: point.category.name
+        title: point.category.name,
+        icon: leaflet__WEBPACK_IMPORTED_MODULE_2__.icon({
+          iconUrl: (0,_Helper_Config__WEBPACK_IMPORTED_MODULE_4__.routeTo)("img/map-marker/" + point.category["marker-icon"])
+        })
       }).on("click", function () {
         return updateDetailModal(point);
-      }); //console.log("MOVE", mkr, "TO", categorys[point.category.id], categorys[point.category.id].name);
-
+      });
       categorys[point.category.id].marker.push(mkr);
     });
     var defaultMarkerGroups = [];
