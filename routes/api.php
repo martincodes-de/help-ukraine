@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\FetchHelpPeopleLeaveUkraineEV;
+use App\Http\Controllers\FetchHelpPeopleLeaveUkraineEVController;
 use App\Http\Controllers\OfferCategoryController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\OfferReportController;
@@ -31,5 +31,5 @@ Route::prefix("offer")->group(function () {
     Route::post("create", [OfferController::class, "create"]);
 
 
-    Route::get("fetch-external", [FetchHelpPeopleLeaveUkraineEV::class, "fetch"]);
+    Route::get("fetch-external", [FetchHelpPeopleLeaveUkraineEVController::class, "fetch"]);
 });

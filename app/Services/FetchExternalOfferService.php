@@ -22,6 +22,7 @@ class FetchExternalOfferService
             $category = reset($entry["metas"]["_job_category"]);
             $categoryIdMapping = match($category) {
                 "Accommodation" => 1,
+                "Clothing" => 2,
                 default => 4,
             };
 
