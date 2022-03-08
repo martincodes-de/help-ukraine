@@ -274,12 +274,12 @@
 
                         <div class="mb-3">
                             <b>Offer description</b>
-                            <p>{shownEntry.description}</p>
+                            <p>{@html shownEntry.description}</p>
                         </div>
 
                         <div class="mb-3">
                             <b>Contact</b>
-                            <p>{shownEntry.contact}</p>
+                            <p>{@html shownEntry.contact}</p>
                         </div>
                     </form>
 

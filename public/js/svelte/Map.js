@@ -2778,30 +2778,28 @@ function create_if_block(ctx) {
   var b2;
   var t12;
   var p2;
-  var t13_value =
+  var raw0_value =
   /*shownEntry*/
   ctx[7].description + "";
   var t13;
-  var t14;
   var div4;
   var b3;
-  var t16;
+  var t15;
   var p3;
-  var t17_value =
+  var raw1_value =
   /*shownEntry*/
   ctx[7].contact + "";
-  var t17;
-  var t18;
+  var t16;
   var a;
-  var t19;
+  var t17;
   var a_href_value;
-  var t20;
+  var t18;
   var button1;
-  var t21_value =
+  var t19_value =
   /*detailModalReport*/
   ctx[3].btnText + "";
-  var t21;
-  var t22;
+  var t19;
+  var t20;
   var div5;
   var current;
   var mounted;
@@ -2841,21 +2839,19 @@ function create_if_block(ctx) {
       b2.textContent = "Offer description";
       t12 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.space)();
       p2 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.element)("p");
-      t13 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.text)(t13_value);
-      t14 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.space)();
+      t13 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.space)();
       div4 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.element)("div");
       b3 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.element)("b");
       b3.textContent = "Contact";
-      t16 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.space)();
+      t15 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.space)();
       p3 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.element)("p");
-      t17 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.text)(t17_value);
-      t18 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.space)();
+      t16 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.space)();
       a = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.element)("a");
-      t19 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.text)("Google Maps");
-      t20 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.space)();
+      t17 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.text)("Google Maps");
+      t18 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.space)();
       button1 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.element)("button");
-      t21 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.text)(t21_value);
-      t22 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.space)();
+      t19 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.text)(t19_value);
+      t20 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.space)();
       div5 = (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.element)("div");
       if (if_block) if_block.c();
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.attr)(h4, "class", "modal-title");
@@ -2908,20 +2904,20 @@ function create_if_block(ctx) {
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(div3, b2);
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(div3, t12);
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(div3, p2);
-      (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(p2, t13);
-      (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(form, t14);
+      p2.innerHTML = raw0_value;
+      (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(form, t13);
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(form, div4);
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(div4, b3);
-      (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(div4, t16);
+      (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(div4, t15);
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(div4, p3);
-      (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(p3, t17);
-      (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(div6, t18);
+      p3.innerHTML = raw1_value;
+      (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(div6, t16);
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(div6, a);
-      (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(a, t19);
-      (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(div6, t20);
+      (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(a, t17);
+      (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(div6, t18);
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(div6, button1);
-      (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(button1, t21);
-      (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(div6, t22);
+      (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(button1, t19);
+      (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(div6, t20);
       (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.append)(div6, div5);
       if (if_block) if_block.m(div5, null);
       current = true;
@@ -2948,14 +2944,16 @@ function create_if_block(ctx) {
       ctx[7].category + "")) (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.set_data)(t9, t9_value);
       if ((!current || dirty[0] &
       /*shownEntry*/
-      128) && t13_value !== (t13_value =
+      128) && raw0_value !== (raw0_value =
       /*shownEntry*/
-      ctx[7].description + "")) (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.set_data)(t13, t13_value);
+      ctx[7].description + "")) p2.innerHTML = raw0_value;
+      ;
       if ((!current || dirty[0] &
       /*shownEntry*/
-      128) && t17_value !== (t17_value =
+      128) && raw1_value !== (raw1_value =
       /*shownEntry*/
-      ctx[7].contact + "")) (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.set_data)(t17, t17_value);
+      ctx[7].contact + "")) p3.innerHTML = raw1_value;
+      ;
 
       if (!current || dirty[0] &
       /*shownEntry*/
@@ -2969,9 +2967,9 @@ function create_if_block(ctx) {
 
       if ((!current || dirty[0] &
       /*detailModalReport*/
-      8) && t21_value !== (t21_value =
+      8) && t19_value !== (t19_value =
       /*detailModalReport*/
-      ctx[3].btnText + "")) (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.set_data)(t21, t21_value);
+      ctx[3].btnText + "")) (0,svelte_internal__WEBPACK_IMPORTED_MODULE_0__.set_data)(t19, t19_value);
 
       if (
       /*detailModalReport*/
