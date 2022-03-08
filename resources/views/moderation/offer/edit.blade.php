@@ -95,10 +95,31 @@
             </div>
 
             <div class="col-sm-12 col-md-4">
-                <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-                      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-                      crossorigin=""/>
-                <moderation-map></moderation-map>
+                <div class="my-2">
+                    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+                          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+                          crossorigin=""/>
+                    <moderation-map></moderation-map>
+                </div>
+                <div class="my-2">
+                    <b>Reports</b>
+                    <ul>
+                        @forelse($offer->reports as $report)
+                            <li>
+                                @if(is_null($report->solved_at))
+                                    <span class="badge bg-danger">open</span>
+                                    @else
+                                    <span class="badge bg-success">closed</span>
+                                @endif
+
+                                <a href="#">from {{$report->created_at->format("d.m.Y")}}</a>
+                                (last edited: {{$report->created_at->format("d.m.Y")}})
+                            </li>
+                            @empty
+                            <li>none :)</li>
+                        @endforelse
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
