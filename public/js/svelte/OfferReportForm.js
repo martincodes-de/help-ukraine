@@ -2542,7 +2542,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "routeTo": () => (/* binding */ routeTo)
 /* harmony export */ });
 var config = {
-  env: "dev",
+  env: "prod",
   prodUrl: "https://pu.techniknews.biz/",
   devUrl: "https://help-ukraine.ddev.site/"
 };
