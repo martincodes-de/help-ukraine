@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FetchHelpPeopleLeaveUkraineEV;
 use App\Http\Controllers\OfferCategoryController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\OfferReportController;
@@ -28,4 +29,7 @@ Route::prefix("offer")->group(function () {
     Route::get("all", [OfferController::class, "listAll"]);
     Route::get("all-reviewed", [OfferController::class, "listAllReviewed"]);
     Route::post("create", [OfferController::class, "create"]);
+
+
+    Route::get("fetch-via-api", [FetchHelpPeopleLeaveUkraineEV::class, "fetch"]);
 });
